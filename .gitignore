@@ -1,0 +1,6 @@
+/bin/
+/europe*-gh/
+/europe_austria-gh
+/europe_alps-gh
+/target
+*.pbf
