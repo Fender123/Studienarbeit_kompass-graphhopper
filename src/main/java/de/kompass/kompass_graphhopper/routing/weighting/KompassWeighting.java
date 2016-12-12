@@ -10,7 +10,7 @@ import de.kompass.kompass_graphhopper.KompassGraphHopper;
 
 public class KompassWeighting extends FastestWeighting {
 
-    protected final static double MAX_COUNT = 20.0;    
+    protected final static double MAX_COUNT = 32767.0;	//max positive short value    
     
     private final double minFactor;
     private final KompassGraphHopper graphHopper;

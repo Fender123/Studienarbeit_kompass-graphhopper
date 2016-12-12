@@ -74,23 +74,23 @@ public class KompassGraphHopper extends GraphHopper {
         return bitUtil.combineIntsToLong(edgeMapping.getInt(pointer), edgeMapping.getInt(pointer + 4L));
     }
     
-    public void storeEdgeCount(int edgeId, int count){
-    	long pointer = 4L * edgeId;
-    	edgeCountMapping.ensureCapacity(pointer + 4L);
+    public void storeEdgeCount(int edgeId, short count){
+    	long pointer = 2L * edgeId;
+    	edgeCountMapping.ensureCapacity(pointer + 2L);
     	
-    	edgeCountMapping.setInt(pointer, count);
+    	edgeCountMapping.setShort(pointer, count);
     }
     
     public void flushEdgeCounts(){
     	edgeCountMapping.flush();
     }
     
-    public int getEdgeCount(int edgeId){
-    	long pointer = 4L * edgeId;
+    public short getEdgeCount(int edgeId){
+    	long pointer = 2L * edgeId;
     	if(pointer > edgeCountMapping.getCapacity()){
     		return 0;
     	}
-    	return edgeCountMapping.getInt(pointer);
+    	return edgeCountMapping.getShort(pointer);
     }
 
     @Override
