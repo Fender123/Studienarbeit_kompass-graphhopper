@@ -1,14 +1,13 @@
 package de.kompass.kompass_graphhopper.routing.weighting;
 
-import com.graphhopper.routing.util.FastestWeighting;
 import com.graphhopper.routing.util.FlagEncoder;
-import com.graphhopper.routing.util.HintsMap;
+import com.graphhopper.routing.util.PriorityWeighting;
 import com.graphhopper.util.EdgeIteratorState;
 import com.graphhopper.util.PMap;
 
 import de.kompass.kompass_graphhopper.KompassGraphHopper;
 
-public class KompassWeighting extends FastestWeighting {
+public class KompassWeighting extends PriorityWeighting {
 
     protected final static double MAX_COUNT = 32767.0;	//max positive short value    
     
@@ -38,7 +37,7 @@ public class KompassWeighting extends FastestWeighting {
         if (Double.isInfinite(weight))
             return Double.POSITIVE_INFINITY;
         double prio = Math.min(1.0, graphHopper.getEdgeCount(edgeId) / MAX_COUNT);
-        return weight / (0.5 + prio);	//TODO priorität einer edge aus eigenem DataAccess lesen. Map matcher postprocessing Schritt speichert die nötigen Werte zu entweder OSM ID oder edge id
+        return weight / (0.5 + prio);
     }
 	@Override
 	public String getName() {
